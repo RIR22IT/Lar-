@@ -1,3 +1,5 @@
+<?php $db = mysqli_connect("localhost", "root", "", "lar") ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -138,21 +140,40 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
           <!-- Page Heading -->
-          <h1 class="h3 mb-1 text-gray-800">Create Advertisement</h1><hr><br>
+          <center><h1 class="h3 mb-1 text-gray-800">Create Advertisement</h1></center><hr><br>
 
-          <form method = "post">
+          <?php  
+      
+   		    $db = mysqli_connect("localhost", "root", "", "lar");
+ 
+          $per_page_record = 3;  // Number of entries to show in a page.   
+          // Look for a GET variable page if not found default is 1.        
+          if (isset($_GET["page"])) {    
+            $page  = $_GET["page"];    
+          }    
+          else {    
+            $page=1;    
+          }    
+    
+          $start_from = ($page-1) * $per_page_record;     
+    
+          $query = "SELECT * FROM createform LIMIT $start_from, $per_page_record";     
+          $rs_result = mysqli_query ($db, $query);    
+        ?>    
+
+
+          <center><form method = "post">
             <div class="col-7">
-              <input type="text" class="form-control" id="title" placeholder="Title">
+              <input type="text" class="form-control"  name="title" placeholder="Title">
             </div><br>
           
             <div class="col-7">
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description"></textarea>
+              <textarea class="form-control" rows="3" name="description" placeholder="Description"></textarea>
             </div><br>
 
             <div class="col-7">
-              <select class="form-control" id="exampleFormControlSelect1">
+              <select class="form-control" name="category">
                 <option selected disabled="disabled">Category</option>
                 <option>IT-Sware/DB/QA/Web/Graphics/GIS</option>
                 <option>Office Admin/Secretary/Receptionist</option>
@@ -189,15 +210,119 @@
               </select>
             </div><br>
 
+            <div class="col-sm-7">
+            <label>Start Date:</label>
+            <input class="form-control" type="date"  name="startDate">
+            </div><br>
+
+            <div class="col-sm-7">
+            <label>Close Date:</label>
+            <input class="form-control" type="date" name="endDate">
+            </div><br>
+
             <div class="col-sm-10">
             <label for="img">Select image:</label>
-            <input type="file" id="img" name="img" accept="image/*">
+            <input type="file" name="img" accept="image/*">
             </div><br>
           
             <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" name="submit" value="Add" class="btn btn-primary">Submit</button>
             </div>
-          </form>
+
+          </form><br><br><br>
+
+          <h3>List</h3>
+
+          <table class="table" style = "width: 80%">
+		      <thead class="table-dark">
+		      <tr>
+			      <th>#</th>
+            <th>IMAGE</th>
+			      <th>TITLE</th>
+			      <th>DESCRIPTION</th>
+			      <th>CATEGORY</th>
+            <th>START DATE</th>
+            <th>CLOSE DATE</th>
+            <th>ACTIONS</th>
+		      </tr></thead>
+
+          <?php  
+
+		          $i = 1;
+		          $qry = "select * from createform";
+		          $run = $db -> query($qry);
+		          if($run -> num_rows > 0){
+			        while($row = $run -> fetch_assoc()){
+			        $id = $row['id'];
+	        ?>
+
+          <?php     
+  	          while ($row = mysqli_fetch_array($rs_result)) {    
+              // Display each field of the records.    
+  	      ?> 
+
+        <tr> 
+		      <td class="table-secondary"><?php echo $i++ ?></td>
+		      <td class="table-secondary"><?php echo $row['title'] ?></td>
+		      <td class="table-secondary"><?php echo $row['description'] ?></td>
+          <td class="table-secondary"><?php echo $row['category'] ?></td>
+		      <td class="table-secondary"><?php echo $row['startDate'] ?></td>
+          <td class="table-secondary"><?php echo $row['closeDate'] ?></td>
+		      <td class="table-secondary"><?php echo $row['img'] ?></td>
+          <td class="table-secondary">
+			    <button type="button" class="btn btn-warning"><a href="editStudent.php?id=<?php echo $id; ?>">Edit</a></button>
+			    <button type="button" class="btn btn-danger"><a href="deleteStudent.php?id=<?php echo $id; ?>" onclick="return confirm('Are you sure?')">Delete</a></button>
+		      </td>
+	      </tr>
+
+        <?php     
+        };    
+        ?> 
+
+	      <?php  
+
+		    }
+		    }
+
+	    ?>
+
+
+      </table>
+	
+      <div class="pagination">    
+      <?php  
+        $query = "SELECT COUNT(*) FROM createform";     
+        $rs_result = mysqli_query($db, $query);     
+        $row = mysqli_fetch_row($rs_result);     
+        $total_records = $row[0];     
+          
+    	echo "</br>";     
+        // Number of pages required.   
+        $total_pages = ceil($total_records / $per_page_record);     
+        $pagLink = "";       
+      
+        if($page>=2){   
+            echo "<a href='adminPanel.php?page=".($page-1)."'>  Prev </a>";   
+        }       
+                   
+        for ($i=1; $i<=$total_pages; $i++) {   
+          if ($i == $page) {   
+              $pagLink .= "<a class = 'active' href='adminPanel.php?page="  
+                                                .$i."'>".$i." </a>";   
+          }               
+          else  {   
+              $pagLink .= "<a href='adminPanel.php?page=".$i."'>   
+                                                ".$i." </a>";     
+          }   
+        };     
+        echo $pagLink;   
+  
+        if($page<$total_pages){   
+            echo "<a href='adminPanel.php?page=".($page+1)."'>  Next </a>";   
+        }   
+  
+      ?>    
+      </div>
 
           <!-- Content Row -->
           <div class="row">
@@ -249,3 +374,23 @@
 </body>
 
 </html>
+
+<?php  
+
+	if(isset($_POST['submit'])){
+		$title = $_POST['title'];
+		$description = $_POST['description'];
+    $category = $_POST['category'];
+		$startDate = $_POST['startDate'];
+    $endDate = $_POST['endDate'];
+		$img = $_POST['img'];
+		
+		$qry = "INSERT INTO createform VALUES (null, '$title', '$description', '$category', '$startDate', '$endDate', '$img',)";
+		if(mysqli_query($db, $qry)){
+			header('location: adminPanel.php');
+		}else{
+			echo mysqli_error($db);
+		}
+	}
+
+?>
