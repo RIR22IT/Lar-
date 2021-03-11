@@ -1,3 +1,5 @@
+<?php include('includes/headerAdmin.php'); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 

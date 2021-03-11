@@ -1,4 +1,4 @@
-<?php $db = mysqli_connect("localhost", "root", "", "lar") ?>
+<?php include('Database/connection.inc.php'); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -32,8 +32,8 @@
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
+        <div class="sidebar-brand-icon">
+          <i class="fas fa-users-cog"></i>
         </div>
         <div class="sidebar-brand-text mx-3">ADMIN</div>
       </a>
@@ -45,21 +45,16 @@
       <li class="nav-item">
         <a class="nav-link" href="index.html">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
+          <span>ADMIN PANEL</span></a>
       </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
 
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Interface
-      </div>
-
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item active">
         <a class="nav-link" href="adminPanel.html" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
+          <i class="fas fa-plus-square"></i>
           <span>Add</span>
         </a>
         <div id="collapseUtilities" class="collapse show" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
@@ -69,7 +64,7 @@
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item active">
         <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
+          <i class="fas fa-eye"></i>
           <span>View</span>
         </a>
         <div id="collapseUtilities" class="collapse show" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
@@ -109,7 +104,7 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                <img class="img-profile rounded-circle" src="images/admin-img.jpg">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -142,26 +137,6 @@
         <div class="container-fluid">
           <!-- Page Heading -->
           <center><h1 class="h3 mb-1 text-gray-800">Create Advertisement</h1></center><hr><br>
-
-          <?php  
-      
-   		    $db = mysqli_connect("localhost", "root", "", "lar");
- 
-          $per_page_record = 3;  // Number of entries to show in a page.   
-          // Look for a GET variable page if not found default is 1.        
-          if (isset($_GET["page"])) {    
-            $page  = $_GET["page"];    
-          }    
-          else {    
-            $page=1;    
-          }    
-    
-          $start_from = ($page-1) * $per_page_record;     
-    
-          $query = "SELECT * FROM createform LIMIT $start_from, $per_page_record";     
-          $rs_result = mysqli_query ($db, $query);    
-        ?>    
-
 
           <center><form method = "post">
             <div class="col-7">
@@ -224,7 +199,7 @@
             <label for="img">Select image:</label>
             <input type="file" name="img" accept="image/*">
             </div><br>
-          
+
             <div class="col-sm-10">
             <button type="submit" name="submit" value="Add" class="btn btn-primary">Submit</button>
             </div>
@@ -237,12 +212,13 @@
 		      <thead class="table-dark">
 		      <tr>
 			      <th>#</th>
-            <th>IMAGE</th>
+            <!-- <th>IMAGE</th> -->
 			      <th>TITLE</th>
 			      <th>DESCRIPTION</th>
 			      <th>CATEGORY</th>
             <th>START DATE</th>
             <th>CLOSE DATE</th>
+            <th>IMG</th>
             <th>ACTIONS</th>
 		      </tr></thead>
 
@@ -256,19 +232,14 @@
 			        $id = $row['id'];
 	        ?>
 
-          <?php     
-  	          while ($row = mysqli_fetch_array($rs_result)) {    
-              // Display each field of the records.    
-  	      ?> 
-
         <tr> 
 		      <td class="table-secondary"><?php echo $i++ ?></td>
 		      <td class="table-secondary"><?php echo $row['title'] ?></td>
 		      <td class="table-secondary"><?php echo $row['description'] ?></td>
           <td class="table-secondary"><?php echo $row['category'] ?></td>
 		      <td class="table-secondary"><?php echo $row['startDate'] ?></td>
-          <td class="table-secondary"><?php echo $row['closeDate'] ?></td>
-		      <td class="table-secondary"><?php echo $row['img'] ?></td>
+          <td class="table-secondary"><?php echo $row['endDate'] ?></td>
+          <td class="table-secondary"><?php echo $row['img'] ?></td>
           <td class="table-secondary">
 			    <button type="button" class="btn btn-warning"><a href="editStudent.php?id=<?php echo $id; ?>">Edit</a></button>
 			    <button type="button" class="btn btn-danger"><a href="deleteStudent.php?id=<?php echo $id; ?>" onclick="return confirm('Are you sure?')">Delete</a></button>
@@ -282,48 +253,11 @@
 	      <?php  
 
 		    }
-		    }
-
 	    ?>
 
 
       </table>
 	
-      <div class="pagination">    
-      <?php  
-        $query = "SELECT COUNT(*) FROM createform";     
-        $rs_result = mysqli_query($db, $query);     
-        $row = mysqli_fetch_row($rs_result);     
-        $total_records = $row[0];     
-          
-    	echo "</br>";     
-        // Number of pages required.   
-        $total_pages = ceil($total_records / $per_page_record);     
-        $pagLink = "";       
-      
-        if($page>=2){   
-            echo "<a href='adminPanel.php?page=".($page-1)."'>  Prev </a>";   
-        }       
-                   
-        for ($i=1; $i<=$total_pages; $i++) {   
-          if ($i == $page) {   
-              $pagLink .= "<a class = 'active' href='adminPanel.php?page="  
-                                                .$i."'>".$i." </a>";   
-          }               
-          else  {   
-              $pagLink .= "<a href='adminPanel.php?page=".$i."'>   
-                                                ".$i." </a>";     
-          }   
-        };     
-        echo $pagLink;   
-  
-        if($page<$total_pages){   
-            echo "<a href='adminPanel.php?page=".($page+1)."'>  Next </a>";   
-        }   
-  
-      ?>    
-      </div>
-
           <!-- Content Row -->
           <div class="row">
 
@@ -385,9 +319,9 @@
     $endDate = $_POST['endDate'];
 		$img = $_POST['img'];
 		
-		$qry = "INSERT INTO createform VALUES (null, '$title', '$description', '$category', '$startDate', '$endDate', '$img',)";
+		$qry = "INSERT INTO createform VALUES (null, '$title', '$description', '$category', '$startDate', '$endDate', '$img')";
 		if(mysqli_query($db, $qry)){
-			header('location: adminPanel.php');
+			// header('location: adminPanel.php');
 		}else{
 			echo mysqli_error($db);
 		}
