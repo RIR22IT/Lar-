@@ -1,0 +1,67 @@
+/* *{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box{
+    width: 500px;
+    height: 50px;
+    background-attachment: rgb(168, 108, 108);
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+} */
+
+.portalheader{
+    height: 200px;
+    width: 1690px;
+    background-color:#5a5b5d;
+    outline: #2690c5;
+    outline-color: violet;
+    outline-width: 2ch;
+}
+
+.box{
+    height: 70px;
+    width: 1690px;
+    background-color:white;
+
+}
+
+.d-flex{
+    width: 400px;
+}
+
+.btnsearch{
+    color: #5a5b5d;
+    height: 60px;
+}
+.leftdiv{
+    height: 1500px;
+    width: 400px;
+    float: left;
+    background-color: #2690c5;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size:large;
+}
+
+.rightdiv{
+    height: 1550px;
+    width: 1690px;
+    background-color:#5a5b5d;
+}
+
+.card{
+    height: 300px;
+    width: 200px;
+}
