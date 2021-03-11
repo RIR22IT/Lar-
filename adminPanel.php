@@ -321,7 +321,7 @@
 		
 		$qry = "INSERT INTO createform VALUES (null, '$title', '$description', '$category', '$startDate', '$endDate', '$img')";
 		if(mysqli_query($db, $qry)){
-			// header('location: adminPanel.php');
+			// header('location: job-table.php');
 		}else{
 			echo mysqli_error($db);
 		}
