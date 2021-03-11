@@ -1,5 +1,27 @@
 <?php include('Database/connection.inc.php'); ?>
 
+<?php 
+if(!$db){
+	die('error in db' . mysqli_error($db));
+}else{
+
+	$id = $_GET['id'];
+	$qry = "select * from createform where id = $id";
+		$run = $db -> query($qry);
+		if($run -> num_rows > 0){
+			while($row = $run -> fetch_assoc()){
+				$title = $row['title'];
+				$description = $row['description'];
+				$category = $row['category'];
+				$startDate = $row['startDate'];
+				$endDate = $row['endDate'];
+		}
+	}
+
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -136,26 +158,25 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
           <!-- Page Heading -->
-          <center><h1 class="h3 mb-1 text-gray-800">Create Advertisement</h1></center><hr><br>
+          <center><h1 class="h3 mb-1 text-gray-800">Update Advertisement</h1></center><hr><br>
 
-          <center><form method = "post" action = "adminPanel.php" enctype = "multipart/form-data">
+          <center><form method = "post">
             <div class="col-7">
-              <input type="text" class="form-control"  name="title" placeholder="Title">
+              <input type="text" class="form-control"  name="title" placeholder="Title" value = "<?php echo $title; ?>">
             </div><br>
           
             <div class="col-7">
-              <textarea class="form-control" rows="3" name="description" placeholder="Description"></textarea>
+              <textarea class="form-control" rows="3" name="description" placeholder="Description" value = "<?php echo $description; ?>"></textarea>
             </div><br>
 
             <div class="col-7">
-              <label for="cat">Category</label>
               <select class="form-control" id = "cat" name="category">
                 <!-- <option selected disabled="disabled">Category</option> -->
                 <option value="IT-Sware/DB/QA/Web/Graphics/GIS">IT-Sware/DB/QA/Web/Graphics/GIS</option>
                 <option value="Office Admin/Secretary/Receptionist">Office Admin/Secretary/Receptionist</option>
                 <option value="Media/Advert/Communication">Media/Advert/Communication</option>
                 <option value="Apparel/Clothing">Apparel/Clothing</option>
-                <option value="International Development">International Development</option>
+                <optio value="International Development">International Development</option>
                 <option value="IT-HWare/Networks/Systems">IT-HWare/Networks/Systems</option>
                 <option value="Civil Eng/Interior Design/Architecture">Civil Eng/Interior Design/Architecture</option>
                 <option value="Hotels/Restaurants/Food">Hotels/Restaurants/Food</option>
@@ -188,94 +209,25 @@
 
             <div class="col-sm-7">
             <label>Start Date:</label>
-            <input class="form-control" type="date"  name="startDate">
+            <input class="form-control" type="date"  name="startDate" value = "<?php echo $startDate; ?>">
             </div><br>
 
             <div class="col-sm-7">
             <label>Close Date:</label>
-            <input class="form-control" type="date" name="endDate">
-            </div><br>
-
-            <div class="col-sm-7">
-            <label for="img">Select image:</label>
-            <input type="file" name="img" id = "img" class = "form-control" required>
+            <input class="form-control" type="date" name="endDate" value = "<?php echo $endDate; ?>">
             </div><br>
 
             <div class="col-sm-10">
-            <button type="submit" name="submit" value="Add" class="btn btn-primary">Submit</button>
+            <label for="img">Select image:</label>
+            <input type="file" name="img" accept="image/*" >
+            </div><br>
+
+            <div class="col-sm-10">
+            <button type="submit" name="update" value="Update" class="btn btn-primary">Update</button>
             </div>
 
           </form><br><br><br>
 
-          <div class = "card-body">
-            <?php 
-              if(isset($_SESSION['success']) && $_SESSION['success'] !='')
-              {
-                echo '<h2 class = "bg-primary text-white"> '.$_SESSION['success'].'</h2>';
-                unset($_SESSION['success']);
-              }
-
-              if(isset($_SESSION['status']) && $_SESSION['status'] !='')
-              {
-                echo '<h2 class = "bg-primary text-white"> '.$_SESSION['status'].'</h2>';
-                unset($_SESSION['status']);
-              }
-
-            ?>
-          </div>
-
-          <h3>List</h3>
-
-          <table class="table" style = "width: 100%">
-		      <thead class="table-dark">
-		      <tr>
-			      <th>#</th>
-
-			      <th>TITLE</th>
-			      <th>DESCRIPTION</th>
-			      <th>CATEGORY</th>
-            <th>START DATE</th>
-            <th>CLOSE DATE</th>
-            <th>IMG</th>
-            <th>ACTIONS</th>
-		      </tr></thead>
-
-          <?php  
-
-		          $i = 1;
-		          $qry = "select * from createform";
-		          $run = $db -> query($qry);
-		          if($run -> num_rows > 0){
-			        while($row = $run -> fetch_assoc()){
-			        $id = $row['id'];
-	        ?>
-
-        <tr> 
-		      <td class="table-secondary"><?php echo $i++ ?></td>
-		      <td class="table-secondary"><?php echo $row['title'] ?></td>
-		      <td class="table-secondary"><?php echo $row['description'] ?></td>
-          <td class="table-secondary"><?php echo $row['category'] ?></td>
-		      <td class="table-secondary"><?php echo $row['startDate'] ?></td>
-          <td class="table-secondary"><?php echo $row['endDate'] ?></td>
-          <td class="table-secondary"><?php echo '<img src="upload/' .$row['img'].'" width = "100px;" height = "100px;" alt = "Image">'?></td>
-          <td class="table-secondary">
-			    <button type="button" class="btn btn-warning"><a href="editAdminForm.php?id=<?php echo $id; ?>">Edit</a></button>
-			    <button type="button" class="btn btn-danger"><a href="deleteAdminForm.php?id=<?php echo $id; ?>" onclick="return confirm('Are you sure?')">Delete</a></button>
-		      </td>
-	      </tr>
-
-        <?php     
-        };    
-        ?> 
-
-	      <?php  
-
-		    }
-	    ?>
-
-
-      </table>
-	
           <!-- Content Row -->
           <div class="row">
 
@@ -308,7 +260,6 @@
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
           <a class="btn btn-primary" href="login.php">Logout</a>
         </div>
-
       </div>
     </div>
   </div>
@@ -329,32 +280,20 @@
 
 <?php  
 
-	if(isset($_POST['submit'])){
+	if(isset($_POST['update'])){
 		$title = $_POST['title'];
 		$description = $_POST['description'];
-    $category = $_POST['category'];
+		$category = $_POST['category'];
 		$startDate = $_POST['startDate'];
-    $endDate = $_POST['endDate'];
-    $img = $_FILES['img']['name'];
+		$endDate = $_POST['endDate'];
 		
-	 if(file_exists("upload/".$_FILES["img"]["name"]))
-    {
-      $store = $_FILES["img"]["name"];
-      $_SESSION['status'] = "Image already exists. '.$store.'";
+		$qry = "UPDATE createform SET title = '$title', description = '$description', category = '$category', startDate = '$startDate', endDate = '$endDate' WHERE id = $id";
+		if(mysqli_query($db, $qry)){
+			header('location: adminPanel.php');
+		}else{
+			echo mysqli_error($db);
+		}
+	}
 
-    }else{
+?>
 
-      $qry = "INSERT INTO createform VALUES (null, '$title', '$description', '$category', '$startDate', '$endDate', '$img')";
-      	$run = mysqli_query($db, $qry);
-    
-        if($run){
-          move_uploaded_file($_FILES["img"]["tmp_name"],"upload/".$_FILES["img"]["name"]);
-          $_SESSION['success'] = "added";
-        }
-        else{
-          $_SESSION['success'] = "not added";
-        }
-       }
-      }
-      
-    ?>
