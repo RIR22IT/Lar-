@@ -1,4 +1,9 @@
 <?php include ('database/connection.inc.php');?>
+
+<?php $qry = "select * from createform ORDER BY category ASC";
+$run = mysqli_query($db, $qry);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -112,6 +117,7 @@
             while($row = mysqli_fetch_array($qry))
             {
                 echo "<option value='". $row['category'] ."'>" .$row['category'] ."</option>";
+                
             }
         
         ?>
@@ -128,7 +134,7 @@
 			<th>CATEGORY</th>
             <th>START DATE</th>
             <th>CLOSE DATE</th>
-            <th>VIEW</th>
+            <th>ACTION</th>
 		      </tr></thead>
 
           <?php  
@@ -148,11 +154,11 @@
         <tr> 
 		      <td class="table-secondary"><?php echo $row['title'] ?></td>
 		      <td class="table-secondary"><?php echo $row['description'] ?></td>
-          <td class="table-secondary"><?php echo $row['category'] ?></td>
+                <td class="table-secondary"><?php echo $row['category'] ?></td>
 		      <td class="table-secondary"><?php echo $row['startDate'] ?></td>
-          <td class="table-secondary"><?php echo $row['endDate'] ?></td>
-          <td class="table-secondary"><?php echo $row['img'] ?></td>
-	      </tr>
+            <td class="table-secondary"><?php echo $row['endDate'] ?></td>
+            <td class="table-secondary"><a href = "#">View</a></td>
+	        </tr>
 
         <?php     
         }; 
@@ -185,6 +191,44 @@
     });
     });
     </script>
+
+
+    <div class="container">
+        <table id="mytable" class="w3-table-all">
+        <thead></thead>
+        </table>
+    </div>
+
+    <script src="jquery.min.js"></script>
+    <script src="ddtf.js"></script>
+    <script>
+        $('mytable').ddTableFilter();
+    </script>
     
 </body>
 </html>
+
+<script type = "text/javascript" language = "javascript">
+$(document).ready(function(){
+    function load_data(category)
+    {
+        var dataType = $('#product_data').DataTable({
+            "processing":true,
+            "serverSide":true,
+            "order":[],
+            "ajax":{
+                url:"fetch.php",
+                type:"POST",
+                data:{category:category}
+            },
+            "columnDefs":[
+                {
+                    "targets":[2],
+                    "oderable":false,
+                },
+            ],
+        });
+    }
+});
+
+</script>
