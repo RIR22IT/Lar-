@@ -1,6 +1,5 @@
-<?php include('Database/connection.inc.php'); ?>
+<?php $db = mysqli_connect("localhost", "root", "", "lar");
 
-<?php 
 if(!$db){
 	die('error in db' . mysqli_error($db));
 }else{
@@ -157,7 +156,7 @@ if(!$db){
           <!-- Page Heading -->
           <center><h1 class="h3 mb-1 text-gray-800">Update Advertisement</h1></center><hr><br>
 
-          <center><form method = "post">
+          <center><form method = "post" action = "viewAdmin.php">
             <div class="col-7">
               <input type="text" class="form-control"  name="title" placeholder="Title" value = "<?php echo $title; ?>">
             </div><br>
