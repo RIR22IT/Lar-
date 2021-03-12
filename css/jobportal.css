@@ -47,7 +47,7 @@ body{
     height: 60px;
 }
 .leftdiv{
-    height: 1500px;
+    height: 1800px;
     width: 400px;
     float: left;
     background-color: #2690c5;
@@ -58,6 +58,7 @@ body{
 .rightdiv{
     height: 1550px;
     width: 1690px;
+    float: left;
     background-color:#5a5b5d;
 }
 
