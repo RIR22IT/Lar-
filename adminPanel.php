@@ -52,23 +52,19 @@
       <hr class="sidebar-divider">
 
       <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item active">
-        <a class="nav-link" href="adminPanel.html" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+      <li class="nav-item">
+        <a class="nav-link" href="adminPanel.php">
           <i class="fas fa-plus-square"></i>
           <span>Add</span>
         </a>
-        <div id="collapseUtilities" class="collapse show" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-        </div>
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item active">
-        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+      <li class="nav-item">
+        <a class="nav-link" href="viewAdmin.php">
           <i class="fas fa-eye"></i>
           <span>View</span>
         </a>
-        <div id="collapseUtilities" class="collapse show" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-        </div>
       </li>
 
     </ul>
@@ -138,14 +134,18 @@
           <!-- Page Heading -->
           <center><h1 class="h3 mb-1 text-gray-800">Create Advertisement</h1></center><hr><br>
 
-          <center><form method = "post" action = "adminPanel.php" enctype = "multipart/form-data">
+          <center><form method = "post" action = "viewAdmin.php" enctype = "multipart/form-data">
             <div class="col-7">
               <input type="text" class="form-control"  name="title" placeholder="Title">
             </div><br>
-          
+
             <div class="col-7">
-              <textarea class="form-control" rows="3" name="description" placeholder="Description"></textarea>
+              <input type="text" class="form-control"  name="description" placeholder="Description">
             </div><br>
+
+            <!-- <div class="col-7">
+              <textarea class="form-control" rows="3" name="description" placeholder="Description"></textarea>
+            </div><br> -->
 
             <div class="col-7">
               <label for="cat">Category</label>
@@ -224,58 +224,6 @@
             ?>
           </div>
 
-          <h3>List</h3>
-
-          <table class="table" style = "width: 100%">
-		      <thead class="table-dark">
-		      <tr>
-			      <th>#</th>
-
-			      <th>TITLE</th>
-			      <th>DESCRIPTION</th>
-			      <th>CATEGORY</th>
-            <th>START DATE</th>
-            <th>CLOSE DATE</th>
-            <th>IMG</th>
-            <th>ACTIONS</th>
-		      </tr></thead>
-
-          <?php  
-
-		          $i = 1;
-		          $qry = "select * from createform";
-		          $run = $db -> query($qry);
-		          if($run -> num_rows > 0){
-			        while($row = $run -> fetch_assoc()){
-			        $id = $row['id'];
-	        ?>
-
-        <tr> 
-		      <td class="table-secondary"><?php echo $i++ ?></td>
-		      <td class="table-secondary"><?php echo $row['title'] ?></td>
-		      <td class="table-secondary"><?php echo $row['description'] ?></td>
-          <td class="table-secondary"><?php echo $row['category'] ?></td>
-		      <td class="table-secondary"><?php echo $row['startDate'] ?></td>
-          <td class="table-secondary"><?php echo $row['endDate'] ?></td>
-          <td class="table-secondary"><?php echo '<img src="upload/' .$row['img'].'" width = "100px;" height = "100px;" alt = "Image">'?></td>
-          <td class="table-secondary">
-			    <button type="button" class="btn btn-warning"><a href="editAdminForm.php?id=<?php echo $id; ?>">Edit</a></button>
-			    <button type="button" class="btn btn-danger"><a href="deleteAdminForm.php?id=<?php echo $id; ?>" onclick="return confirm('Are you sure?')">Delete</a></button>
-		      </td>
-	      </tr>
-
-        <?php     
-        };    
-        ?> 
-
-	      <?php  
-
-		    }
-	    ?>
-
-
-      </table>
-	
           <!-- Content Row -->
           <div class="row">
 
@@ -326,35 +274,3 @@
 </body>
 
 </html>
-
-<?php  
-
-	if(isset($_POST['submit'])){
-		$title = $_POST['title'];
-		$description = $_POST['description'];
-    $category = $_POST['category'];
-		$startDate = $_POST['startDate'];
-    $endDate = $_POST['endDate'];
-    $img = $_FILES['img']['name'];
-		
-	 if(file_exists("upload/".$_FILES["img"]["name"]))
-    {
-      $store = $_FILES["img"]["name"];
-      $_SESSION['status'] = "Image already exists. '.$store.'";
-
-    }else{
-
-      $qry = "INSERT INTO createform VALUES (null, '$title', '$description', '$category', '$startDate', '$endDate', '$img')";
-      	$run = mysqli_query($db, $qry);
-    
-        if($run){
-          move_uploaded_file($_FILES["img"]["tmp_name"],"upload/".$_FILES["img"]["name"]);
-          $_SESSION['success'] = "added";
-        }
-        else{
-          $_SESSION['success'] = "not added";
-        }
-       }
-      }
-      
-    ?>
