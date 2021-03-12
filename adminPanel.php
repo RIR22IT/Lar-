@@ -219,7 +219,8 @@
             <th>START DATE</th>
             <th>CLOSE DATE</th>
             <th>IMG</th>
-            <th>ACTIONS</th>
+            <th>EDIT</th>
+            <th>DELETE</th>
 		      </tr></thead>
 
           <?php  
@@ -241,8 +242,10 @@
           <td class="table-secondary"><?php echo $row['endDate'] ?></td>
           <td class="table-secondary"><?php echo $row['img'] ?></td>
           <td class="table-secondary">
-			    <button type="button" class="btn btn-warning"><a href="editStudent.php?id=<?php echo $id; ?>">Edit</a></button>
-			    <button type="button" class="btn btn-danger"><a href="deleteStudent.php?id=<?php echo $id; ?>" onclick="return confirm('Are you sure?')">Delete</a></button>
+			    <a href="editStudent.php?id=<?php echo $id; ?>" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+          </td>
+          <td class="table-secondary">
+			    <a href="deleteStudent.php?id=<?php echo $id; ?>" onclick="return confirm('Are you sure?')" class="btn btn-danger"><i class="fas fa-trash"></i></a>
 		      </td>
 	      </tr>
 
