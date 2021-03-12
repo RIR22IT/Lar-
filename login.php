@@ -24,7 +24,7 @@
         var email =  document.getElementById("email").value;
         var password =  document.getElementById("password").value;
 
-        if(username === "Admin@gmail.com" && password === "123" )
+        if(username === "Admin@gmail.com" && password === "admin123" )
         {
             alert( "validation succeeded" );
             location.href="index.html";

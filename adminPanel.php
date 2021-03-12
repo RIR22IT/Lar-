@@ -258,7 +258,7 @@
           <td class="table-secondary"><?php echo $row['category'] ?></td>
 		      <td class="table-secondary"><?php echo $row['startDate'] ?></td>
           <td class="table-secondary"><?php echo $row['endDate'] ?></td>
-          <td class="table-secondary"><?php echo '<img src="upload/' .$row['img'].'" width = "100px;" height = "100px;" alt = "Image">'?></td>
+          <td class="table-secondary"><?php echo '<img src="upload/' .$row['img'].'" width = "50px;" height = "50px;" alt = "Image">'?></td>
           <td class="table-secondary">
 			    <a href="editStudent.php?id=<?php echo $id; ?>" class="btn btn-primary"><i class="fas fa-edit"></i></a>
           </td>
