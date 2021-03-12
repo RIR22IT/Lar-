@@ -1,5 +1,3 @@
-<?php include('includes/headerAdmin.php'); ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,7 +22,7 @@
         var email =  document.getElementById("email").value;
         var password =  document.getElementById("password").value;
 
-        if(username === "Admin@gmail.com" && password === "123" )
+        if(username === "Admin@gmail.com" && password === "admin123" )
         {
             alert( "validation succeeded" );
             location.href="index.html";
@@ -38,13 +36,16 @@
 </script> 
 </head>
 
+<!-- Topbar -->
+<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"></nav>
+
 <body> 
 
 <!-- Admin login Form -->
 
 <form name="logForm" class="user" method="post"> 
   <div style="background-image: url('images/about-8.jpg'); background-size: cover; height: 100vh;" >
-  <br><br><br><div class="container">
+  <br><div class="container">
 
     <!-- Outer Row -->
     <div class="row justify-content-center">
@@ -53,7 +54,7 @@
           <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
             <div class="row" >
-              <div class="col-lg-6 d-none d-lg-block bg-login-image"><img src="images/Logo/NH Logo brand colour.jpg" style="width:460px;height:500px;"/></div>
+              <div class="col-lg-6 d-none d-lg-block bg-login-image"><br><br><br><center><img src="images/LARlogo1.png" style="width:390px;height:320px;"/></center></div>
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
