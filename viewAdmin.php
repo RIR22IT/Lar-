@@ -146,9 +146,9 @@
             ?>
           </div>
 
-          <center><h3>List</h3><hr><br>
+          <center><h3>Job List</h3><hr><br>
 
-          <table class="table" style = "width: 90%">
+          <table class="table" style = "width: 100%">
 		      <thead class="table-dark">
 		      <tr>
 			      <th>#</th>
@@ -179,7 +179,7 @@
               <td class="table-secondary"><?php echo $row['category'] ?></td>
 		      <td class="table-secondary"><?php echo $row['startDate'] ?></td>
               <td class="table-secondary"><?php echo $row['endDate'] ?></td>
-              <td class="table-secondary"><?php echo '<img src="upload/' .$row['img'].'" width = "100px;" height = "100px;" alt = "Image">'?></td>
+              <td class="table-secondary"><?php echo '<img src="upload/' .$row['img'].'" width = "50px;" height = "50px;" alt = "Image">'?></td>
               <td class="table-secondary">
 			    <button type="button" class="btn btn-warning"><a href="editAdminForm.php?id=<?php echo $id; ?>">Edit</a></button>
 			    <button type="button" class="btn btn-danger"><a href="deleteAdminForm.php?id=<?php echo $id; ?>" onclick="return confirm('Are you sure?')">Delete</a></button>
