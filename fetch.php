@@ -34,13 +34,13 @@ if($total_row > 0)
  foreach($result as $row)
  {
   $output .= '
-  <tr>
+   <tr>
    <td>'.$row["title"].'</td>
    <td>'.$row["description"].'</td>
    <td>'.$row["category"].'</td>
    <td>'.$row["startDate"].'</td>
    <td>'.$row["endDate"].'</td>
-   <td><a href="#">View</a>
+   <td><i class="fa fa-eye" style="font-size:20px;color:grey"></i></td>
   </tr>
   ';
  }
@@ -58,3 +58,5 @@ echo $output;
 
 
 ?>
+
+
