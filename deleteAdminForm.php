@@ -8,7 +8,7 @@ $id = $_GET['id'];
 
 $qry = "DELETE FROM createform WHERE id = $id";
 if(mysqli_query($db, $qry)){
-	header('location: adminPanel.php');
+	header('location: viewAdmin.php');
 }else{
 	echo mysqli_error($db);
 }
