@@ -5,11 +5,12 @@ if(isset($_POST['submit'])){
     $email = $_POST['email'];
     $pass = $_POST['password'];
     if($email=='admin@gmail.com' && $pass=='admin'){
-        echo("username and password matched");
+        
+
         header('Location: adminPanel.php?redirect=adminPanel.php');
        
     }else{
-    echo("error ! please enter correct data!");
+    
     }
 }
 ?>
@@ -28,6 +29,8 @@ if(isset($_POST['submit'])){
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+    
 
 </head>
 <body>
@@ -94,22 +97,6 @@ if(isset($_POST['submit'])){
       </div>
     </div>
   </div>
-
-
-
-
-        <!-- <table align="center">
-            <tr>
-            <td>email:</td>
-            <td><input type="text" name="email" placeholder="email"></td>
-            </tr>
-            <tr>
-            <td>password</td>
-            <td><input type="password" name="password" placeholder="password"></td>
-            </tr>
-            <tr>
-            <td><input type="submit" name="submit" value="submit"></td>
-            </tr> -->
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
