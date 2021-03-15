@@ -40,7 +40,7 @@ if($total_row > 0)
    <td>'.$row["category"].'</td>
    <td>'.$row["startDate"].'</td>
    <td>'.$row["endDate"].'</td>
-   <td><a href="#">View</a>
+   <td><a href="">View</a>
   </tr>
   ';
  }

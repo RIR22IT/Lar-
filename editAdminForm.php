@@ -171,266 +171,49 @@
           <!-- Page Heading -->
           <center><h1 class="h3 mb-1 text-gray-800">Update Advertisement</h1></center><hr><br>
 
-          <center><form method = "post">
-            <div class="col-7">
+          <center><form method = "POST">
+            <div class="col-15">
               <input type="text" class="form-control"  name="title" placeholder="Title" value = "<?php echo $title; ?>">
             </div><br>
 
-            <div class="col-7">
+            <div class="col-15">
               <input type="text" class="form-control"  name="description" placeholder="Description" value = "<?php echo $description; ?>">
             </div><br>
         
-            <div class="col-7">
-            <label for="cat">Category</label>
-              <select class="form-control" id = "cat" name="category">
-                <option value="IT-Sware/DB/QA/Web/Graphics/GIS"
-                  <?php
-                    if($category == 'IT-Sware/DB/QA/Web/Graphics/GIS')
-                    {
-                      echo "selected";
-                    }
-                  ?>
-                >IT-Sware/DB/QA/Web/Graphics/GIS</option>
-                <option value="Office Admin/Secretary/Receptionist"
-                  <?php
-                    if($category == 'Office Admin/Secretary/Receptionist')
-                    {
-                      echo "selected";
-                    }
-                  ?>
-                >Office Admin/Secretary/Receptionist</option>
-                <option value="Media/Advert/Communication"
-                  <?php
-                    if($category == 'Media/Advert/Communication')
-                    {
-                      echo "selected";
-                    }
-                  ?>
-                >Media/Advert/Communication</option>
-                <option value="Apparel/Clothing"
-                  <?php
-                    if($category == 'Apparel/Clothing')
-                    {
-                      echo "selected";
-                    }
-                  ?>
-                >Apparel/Clothing</option>
-                <optio value="International Development"
-                  <?php
-                    if($category == 'International Development')
-                    {
-                      echo "selected";
-                    }
-                  ?>
-                >International Development</option>
-                <option value="IT-HWare/Networks/Systems"
-                  <?php
-                    if($category == 'IT-HWare/Networks/Systems')
-                    {
-                      echo "selected";
-                    }
-                  ?>
-                >IT-HWare/Networks/Systems</option>
-                <option value="Civil Eng/Interior Design/Architecture"
-                  <?php
-                    if($category == 'Civil Eng/Interior Design/Architecture')
-                    {
-                      echo "selected";
-                    }
-                  ?>
-                >Civil Eng/Interior Design/Architecture</option>
-                <option value="Hotels/Restaurants/Food"
-                  <?php
-                    if($category == 'Hotels/Restaurants/Food')
-                    {
-                      echo "selected";
-                    }
-                  ?>
-                >Hotels/Restaurants/Food</option>
-                <option value="Ticketing/Airline/Marine"
-                  <?php
-                    if($category == 'Ticketing/Airline/Marine')
-                    {
-                      echo "selected";
-                    }
-                  ?>
-                >Ticketing/Airline/Marine</option>
-                <option value="KPO/BPO"
-                  <?php
-                    if($category == 'KPO/BPO')
-                    {
-                      echo "selected";
-                    }
-                  ?>
-                >KPO/BPO</option>
-                <option value="Accounting/Auditing/Finance"
-                  <?php
-                    if($category == 'Accounting/Auditing/Finance')
-                    {
-                      echo "selected";
-                    }
-                  ?>
-                >Accounting/Auditing/Finance</option>
-                <option value="IT-Telecoms"
-                  <?php
-                    if($category == 'IT-Telecoms')
-                    {
-                      echo "selected";
-                    }
-                  ?>
-                >IT-Telecoms</option>
-                <option value="Hospitality/Tourism"
-                  <?php
-                    if($category == 'Hospitality/Tourism')
-                    {
-                      echo "selected";
-                    }
-                  ?>
-                >Hospitality/Tourism</option>
-                <option value="Teaching/Academic/Library"
-                  <?php
-                    if($category == 'Teaching/Academic/Library')
-                    {
-                      echo "selected";
-                    }
-                  ?>
-                >Teaching/Academic/Library</option>
-                <option value="Imports/Exports"
-                  <?php
-                    if($category == 'Imports/Exports')
-                    {
-                      echo "selected";
-                    }
-                  ?>
-                >Imports/Exports</option>
-                <option value="Banking/Insurance"
-                  <?php
-                    if($category == 'Banking/Insurance')
-                    {
-                      echo "selected";
-                    }
-                  ?>
-                >Banking/Insurance</option>
-                <option value="Customer Relations/Public Relations"
-                  <?php
-                    if($category == 'Customer Relations/Public Relations')
-                    {
-                      echo "selected";
-                    }
-                  ?>
-                >Customer Relations/Public Relations</option>
-                <option value="Sports/Fitness/Recreation"
-                  <?php
-                    if($category == 'Sports/Fitness/Recreation')
-                    {
-                      echo "selected";
-                    }
-                  ?>
-                >Sports/Fitness/Recreation</option>
-                <option value="R&D/Science/Research"
-                  <?php
-                    if($category == 'R&D/Science/Research')
-                    {
-                      echo "selected";
-                    }
-                  ?>
-                >R&D/Science/Research</option>
-                <option value="Sales/Marketing/Merchandising"
-                  <?php
-                    if($category == 'Sales/Marketing/Merchandising')
-                    {
-                      echo "selected";
-                    }
-                  ?>
-                >Sales/Marketing/Merchandising</option>
-                <option value="Logistics/Warehouse/Transport"
-                  <?php
-                    if($category == 'Logistics/Warehouse/Transport')
-                    {
-                      echo "selected";
-                    }
-                  ?>
-                >Logistics/Warehouse/Transport</option>
-                <option value="Hospital/Nursing/Healthcare"
-                  <?php
-                    if($category == 'Hospital/Nursing/Healthcare')
-                    {
-                      echo "selected";
-                    }
-                  ?>
-                >Hospital/Nursing/Healthcare</option>
-                <option value="Agriculture/Dairy/Environment"
-                  <?php
-                    if($category == 'Agriculture/Dairy/Environment')
-                    {
-                      echo "selected";
-                    }
-                  ?>
-                >Agriculture/Dairy/Environment</option>
-                <option value="HR/Training"
-                  <?php
-                    if($category == 'HR/Training')
-                    {
-                      echo "selected";
-                    }
-                  ?>
-                >HR/Training</option>
-                <option value="Eng-Mech/Auto/Elec"
-                  <?php
-                    if($category == 'Eng-Mech/Auto/Elec')
-                    {
-                      echo "selected";
-                    }
-                  ?>
-                >Eng-Mech/Auto/Elec</option>
-                <option value="Legal/Law"
-                  <?php
-                    if($category == 'Legal/Law')
-                    {
-                      echo "selected";
-                    }
-                  ?>
-                >Legal/Law</option>
-                <option value="Security"
-                  <?php
-                    if($category == 'Security')
-                    {
-                      echo "selected";
-                    }
-                  ?>
-                >Security</option>
-                <option value="Corporate Management/Analysts"
-                  <?php
-                    if($category == 'Corporate Management/Analysts')
-                    {
-                      echo "selected";
-                    }
-                  ?>
-                >Corporate Management/Analysts</option>
-                <option value="Manufacturing/Operations"
-                  <?php
-                    if($category == 'Manufacturing/Operations')
-                    {
-                      echo "selected";
-                    }
-                  ?>
-                >Manufacturing/Operations</option>
-                <option value="Supervision/Quality Control"
-                  <?php
-                    if($category == 'Supervision/Quality Control')
-                    {
-                      echo "selected";
-                    }
-                  ?>
-                >Supervision/Quality Control</option>
-                <option value="Fashion/Design/Beauty"
-                  <?php
-                    if($category == 'Fashion/Design/Beauty')
-                    {
-                      echo "selected";
-                    }
-                  ?>
-                >Fashion/Design/Beauty</option>
+            <div class="col-15">
+          <select class="form-control" id = "cat" name="category" value = "<?php echo $category; ?>">
+                <option selected disabled="disabled">Category</option>
+                <option value="IT-Sware/DB/QA/Web/Graphics/GIS">IT-Sware/DB/QA/Web/Graphics/GIS</option>
+                <option value="Office Admin/Secretary/Receptionist">Office Admin/Secretary/Receptionist</option>
+                <option value="Media/Advert/Communication">Media/Advert/Communication</option>
+                <option value="Apparel/Clothing">Apparel/Clothing</option>
+                <option value="International Development">International Development</option>
+                <option value="IT-HWare/Networks/Systems">IT-HWare/Networks/Systems</option>
+                <option value="Civil Eng/Interior Design/Architecture">Civil Eng/Interior Design/Architecture</option>
+                <option value="Hotels/Restaurants/Food">Hotels/Restaurants/Food</option>
+                <option value="Ticketing/Airline/Marine">Ticketing/Airline/Marine</option>
+                <option value="KPO/BPO">KPO/BPO</option>
+                <option value="Accounting/Auditing/Finance">Accounting/Auditing/Finance</option>
+                <option value="IT-Telecoms">IT-Telecoms</option>
+                <option value="Hospitality/Tourism">Hospitality/Tourism</option>
+                <option value="Teaching/Academic/Library">Teaching/Academic/Library</option>
+                <option value="Imports/Exports">Imports/Exports</option>
+                <option value="Banking/Insurance">Banking/Insurance</option>
+                <option value="Customer Relations/Public Relations">Customer Relations/Public Relations</option>
+                <option value="Sports/Fitness/Recreation">Sports/Fitness/Recreation</option>
+                <option value="R&D/Science/Research">R&D/Science/Research</option>
+                <option value="Sales/Marketing/Merchandising">Sales/Marketing/Merchandising</option>
+                <option value="Logistics/Warehouse/Transport">Logistics/Warehouse/Transport</option>
+                <option value="Hospital/Nursing/Healthcare">Hospital/Nursing/Healthcare</option>
+                <option value="Agriculture/Dairy/Environment">Agriculture/Dairy/Environment</option>
+                <option value="HR/Training">HR/Training</option>
+                <option value="Eng-Mech/Auto/Elec">Eng-Mech/Auto/Elec</option>
+                <option value="Legal/Law">Legal/Law</option>
+                <option value="Security">Security</option>
+                <option value="Corporate Management/Analysts">Corporate Management/Analysts</option>
+                <option value="Manufacturing/Operations">Manufacturing/Operations</option>
+                <option value="Supervision/Quality Control">Supervision/Quality Control</option>
+                <option value="Fashion/Design/Beauty">Fashion/Design/Beauty</option>
               </select>
         </div><br>
 
