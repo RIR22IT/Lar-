@@ -171,7 +171,7 @@ if(!$db){
               <select class="form-control" id = "cat" name="category">
                 <option value="IT-Sware/DB/QA/Web/Graphics/GIS"
                   <?php
-                    if($category == 'Media/Advert/Communication')
+                    if($category == 'IT-Sware/DB/QA/Web/Graphics/GIS')
                     {
                       echo "selected";
                     }
