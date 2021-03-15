@@ -175,7 +175,6 @@
                 <option value="Customer Relations/Public Relations">Customer Relations/Public Relations</option>
                 <option value="Sports/Fitness/Recreation">Sports/Fitness/Recreation</option>
                 <option value="R&D/Science/Research">R&D/Science/Research</option>
-                <option value="All Vacancies">All Vacancies</option>
                 <option value="Sales/Marketing/Merchandising">Sales/Marketing/Merchandising</option>
                 <option value="Logistics/Warehouse/Transport">Logistics/Warehouse/Transport</option>
                 <option value="Hospital/Nursing/Healthcare">Hospital/Nursing/Healthcare</option>
@@ -241,7 +240,7 @@
   </div>
   <!-- End of Page Wrapper -->
 
-  <!-- Scroll to Top Button-->
+  <!-- Scroll to Top Button -->
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
