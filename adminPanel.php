@@ -1,4 +1,5 @@
-<?php include('Database/connection.inc.php'); ?>
+<?php include ('database/connection.inc.php');?>
+<?php  include('php_code.php'); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +12,30 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>ADMIN FORM</title>
+  <style>
+    form {
+    width: 45%;
+    margin: 50px auto;
+    text-align: left;
+    padding: 20px; 
+    border: 1px solid #bbbbbb; 
+    border-radius: 5px;
+  }
+
+  .msg {
+    margin: 30px auto; 
+    padding: 10px; 
+    border-radius: 5px; 
+    color: #3c763d; 
+    background: #dff0d8; 
+    border: 1px solid #3c763d;
+    width: 50%;
+    text-align: center;
+  }
+
+  </style>
+
+  <title>ADMIN PANEL</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -31,9 +55,9 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="adminPanel.php">
         <div class="sidebar-brand-icon">
-          <i class="fas fa-users-cog"></i>
+        <i class="fas fa-users-cog"></i>
         </div>
         <div class="sidebar-brand-text mx-3">ADMIN</div>
       </a>
@@ -43,13 +67,11 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="adminPanel.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>ADMIN PANEL</span></a>
       </li>
 
-      <!-- Divider -->
-      <hr class="sidebar-divider">
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
@@ -104,19 +126,6 @@
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
-                </a>
-                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="login.html" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
@@ -132,25 +141,21 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
           <!-- Page Heading -->
-          <center><h1 class="h3 mb-1 text-gray-800">Create Advertisement</h1></center><hr><br>
+          <center><h1 class="h3 mb-1 text-gray-800">Create Advertisement</h1></center><hr>
 
-          <center><form method = "post" action = "viewAdmin.php" enctype = "multipart/form-data">
-            <div class="col-7">
-              <input type="text" class="form-control"  name="title" placeholder="Title">
-            </div><br>
+          <form method="post" action="viewAdmin.php" enctype = "multipart/form-data">
 
-            <div class="col-7">
-              <input type="text" class="form-control"  name="description" placeholder="Description">
-            </div><br>
+          <div class="col-15">
+			    <input type="text" name="title" class="form-control" value="" placeholder = "Title">
+		      </div><br>
 
-            <!-- <div class="col-7">
-              <textarea class="form-control" rows="3" name="description" placeholder="Description"></textarea>
-            </div><br> -->
+          <div class="col-15">
+			    <input type="text" name="description" class="form-control" value="" placeholder = "Desription">
+		      </div><br>
 
-            <div class="col-7">
-              <label for="cat">Category</label>
-              <select class="form-control" id = "cat" name="category">
-                <!-- <option selected disabled="disabled">Category</option> -->
+          <div class="col-15">
+          <select class="form-control" id = "cat" name="category">
+                <option selected disabled="disabled">Category</option>
                 <option value="IT-Sware/DB/QA/Web/Graphics/GIS">IT-Sware/DB/QA/Web/Graphics/GIS</option>
                 <option value="Office Admin/Secretary/Receptionist">Office Admin/Secretary/Receptionist</option>
                 <option value="Media/Advert/Communication">Media/Advert/Communication</option>
@@ -184,31 +189,31 @@
                 <option value="Supervision/Quality Control">Supervision/Quality Control</option>
                 <option value="Fashion/Design/Beauty">Fashion/Design/Beauty</option>
               </select>
-            </div><br>
+        </div><br>
 
-            <div class="col-sm-7">
-            <label>Start Date:</label>
-            <input class="form-control" type="date"  name="startDate">
-            </div><br>
+        <div class="col-15">
+			  <label>Start Date</label>
+			  <input type="date" class="form-control" name="startDate" value="" >
+	    	</div><br>
 
-            <div class="col-sm-7">
-            <label>Close Date:</label>
-            <input class="form-control" type="date" name="endDate">
-            </div><br>
+        <div class="col-15">
+			  <label>End Date</label>
+			  <input type="date" class="form-control" name="endDate" value="">
+		    </div><br>
 
-            <div class="col-sm-7">
-            <label for="img">Select image:</label>
-            <input type="file" name="img" id = "img" class = "form-control" required>
-            </div><br>
+        <div class="col-15">
+        <label for="img">Select image</label>
+        <input type="file" class="form-control" name="img"  id = "img" value ="">
+		    </div><br>
 
-            <div class="col-sm-10">
-            <button type="submit" name="submit" value="Add" class="btn btn-primary">Submit</button>
-            </div>
+        <div class="col-sm-10">
+			  <button type = "submit" name="save" class="btn btn-primary">Submit</button>
+		    </div>
 
-          </form><br><br><br>
+	      </form>
 
-          <div class = "card-body">
-            <?php 
+        <div class = "card-body">
+          <?php 
               if(isset($_SESSION['success']) && $_SESSION['success'] !='')
               {
                 echo '<h2 class = "bg-primary text-white"> '.$_SESSION['success'].'</h2>';
@@ -221,8 +226,8 @@
                 unset($_SESSION['status']);
               }
 
-            ?>
-          </div>
+          ?>
+        </div>
 
           <!-- Content Row -->
           <div class="row">
@@ -267,9 +272,6 @@
 
   <!-- Core plugin JavaScript-->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
 
 </body>
 

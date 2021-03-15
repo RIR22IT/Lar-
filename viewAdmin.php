@@ -1,17 +1,12 @@
-<?php include('Database/connection.inc.php'); ?>
+<?php include ('database/connection.inc.php');?>
+<?php  include('php_code.php'); ?>
 
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>ADMIN FORM</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+	<title>CRUD: CReate, Update, Delete PHP MySQL</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -20,55 +15,90 @@
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
-</head>
+    <style>
+      
+  form {
+    width: 45%;
+    margin: 50px auto;
+    text-align: left;
+    padding: 20px; 
+    border: 1px solid #bbbbbb; 
+    border-radius: 5px;
+}
 
+  .edit_btn {
+    text-decoration: none;
+    padding: 2px 5px;
+    background: #2E8B57;
+    color: white;
+    border-radius: 3px;
+  }
+
+  .del_btn {
+    text-decoration: none;
+    padding: 2px 5px;
+    color: white;
+    border-radius: 3px;
+    background: #800000;
+  }
+
+  .msg {
+    margin: 30px auto; 
+    padding: 10px; 
+    border-radius: 5px; 
+    color: #3c763d; 
+    background: #dff0d8; 
+    border: 1px solid #3c763d;
+    width: 50%;
+    text-align: center;
+  }
+  </style>
+
+</head>
 <body id="page-top">
 
-  <!-- Page Wrapper -->
+      <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-      <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon">
-          <i class="fas fa-users-cog"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">ADMIN</div>
-      </a>
+  <!-- Sidebar - Brand -->
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="adminPanel.php">
+    <div class="sidebar-brand-icon">
+      <i class="fas fa-users-cog"></i>
+    </div>
+    <div class="sidebar-brand-text mx-3">ADMIN</div>
+  </a>
 
-      <!-- Divider -->
-      <hr class="sidebar-divider my-0">
+  <!-- Divider -->
+  <hr class="sidebar-divider my-0">
 
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item">
-        <a class="nav-link" href="index.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>ADMIN PANEL</span></a>
-      </li>
+  <!-- Nav Item - Dashboard -->
+  <li class="nav-item">
+    <a class="nav-link" href="adminPanel.php">
+      <i class="fas fa-fw fa-tachometer-alt"></i>
+      <span>ADMIN PANEL</span></a>
+  </li>
 
-      <!-- Divider -->
-      <hr class="sidebar-divider">
 
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link" href="adminPanel.php">
-          <i class="fas fa-plus-square"></i>
-          <span>Add</span>
-        </a>
-      </li>
+  <!-- Nav Item - Utilities Collapse Menu -->
+  <li class="nav-item">
+    <a class="nav-link" href="adminPanel.php">
+      <i class="fas fa-plus-square"></i>
+      <span>Add</span>
+    </a>
+  </li>
 
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link" href="viewAdmin.php">
-          <i class="fas fa-eye"></i>
-          <span>View</span>
-        </a>
-      </li>
+  <!-- Nav Item - Utilities Collapse Menu -->
+  <li class="nav-item">
+    <a class="nav-link" href="viewAdmin.php">
+      <i class="fas fa-eye"></i>
+      <span>View</span>
+    </a>
+  </li>
 
-    </ul>
-    <!-- End of Sidebar -->
+</ul>
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -104,19 +134,6 @@
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
-                </a>
-                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="login.html" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
@@ -127,95 +144,68 @@
           </ul>
 
         </nav>
-        <!-- End of Topbar -->
 
-          <div class = "card-body">
-            <?php 
-              if(isset($_SESSION['success']) && $_SESSION['success'] !='')
-              {
-                echo '<h2 class = "bg-primary text-white"> '.$_SESSION['success'].'</h2>';
-                unset($_SESSION['success']);
-              }
+        <center><h1 class="h3 mb-1 text-gray-800">View Advertisements</h1></center><hr><br>
 
-              if(isset($_SESSION['status']) && $_SESSION['status'] !='')
-              {
-                echo '<h2 class = "bg-primary text-white"> '.$_SESSION['status'].'</h2>';
-                unset($_SESSION['status']);
-              }
-
-            ?>
-          </div>
-
-          <center><h3>List</h3><hr><br>
-
-          <table class="table" style = "width: 90%">
-		      <thead class="table-dark">
-		      <tr>
-			      <th>#</th>
-
+        <center><table class="table" style = "width: 90%">
+		    <thead class="table-dark">
+		    <tr>
+            <th>#</th>
 			      <th>TITLE</th>
-			      <th>DESCRIPTION</th>
+            <th>DESCRIPTION</th>
 			      <th>CATEGORY</th>
-                  <th>START DATE</th>
-                  <th>CLOSE DATE</th>
-                  <th>IMG</th>
-                  <th>ACTIONS</th>
-		      </tr></thead>
+            <th>START DATE</th>
+			      <th>END DATE</th>
+            <th>IMG</th>
+			      <th>EDIT</th>
+            <th>DELETE</th>
+		    </tr>
+	      </thead>
 
-          <?php  
-
-		          $i = 1;
-		          $qry = "select * from createform";
-		          $run = $db -> query($qry);
-		          if($run -> num_rows > 0){
-			        while($row = $run -> fetch_assoc()){
-			        $id = $row['id'];
-	        ?>
-
-        <tr> 
-		      <td class="table-secondary"><?php echo $i++ ?></td>
-		      <td class="table-secondary"><?php echo $row['title'] ?></td>
-		      <td class="table-secondary"><?php echo $row['description'] ?></td>
-              <td class="table-secondary"><?php echo $row['category'] ?></td>
-		      <td class="table-secondary"><?php echo $row['startDate'] ?></td>
-              <td class="table-secondary"><?php echo $row['endDate'] ?></td>
-              <td class="table-secondary"><?php echo '<img src="upload/' .$row['img'].'" width = "100px;" height = "100px;" alt = "Image">'?></td>
-              <td class="table-secondary">
-			    <button type="button" class="btn btn-warning"><a href="editAdminForm.php?id=<?php echo $id; ?>">Edit</a></button>
-			    <button type="button" class="btn btn-danger"><a href="deleteAdminForm.php?id=<?php echo $id; ?>" onclick="return confirm('Are you sure?')">Delete</a></button>
-		      </td>
-	      </tr>
+        <?php  
+		    $i = 1;
+		    $qry = "select * from createform";
+		    $run = $db -> query($qry);
+		    if($run -> num_rows > 0){
+			  while($row = $run -> fetch_assoc()){
+			  $id = $row['id'];
+	      ?>
+	
+		    <tr>
+          <td class="table-secondary"><?php echo $i++ ?></td>
+			    <td class="table-secondary"><?php echo $row['title']; ?></td>
+			    <td class="table-secondary"><?php echo $row['description']; ?></td>
+          <td class="table-secondary"><?php echo $row['category']; ?></td>
+		    	<td class="table-secondary"><?php echo $row['startDate']; ?></td>
+          <td class="table-secondary"><?php echo $row['endDate']; ?></td>
+          <td class="table-secondary"><?php echo '<img src="upload/' .$row['img'].'" width = "70px;" height = "70px;" alt = "Image">'?></td>
+			    <td class="table-secondary">
+				  <a href="editAdminForm.php?edit=<?php echo $row['id']; ?>" class="edit_btn" ><i class="fas fa-edit" style="color:white"></i></a>
+			    </td>
+			    <td class="table-secondary">
+				  <a href="php_code.php?del=<?php echo $row['id']; ?>" class="del_btn"><i class="fa fa-trash" style="color:white"></i></a>
+			    </td>
+		      </tr>
 
         <?php     
-        };    
         ?> 
 
 	      <?php  
-
+         }
 		    }
 	    ?>
 
+      </table></center>
 
-      </table>
-	
-          <!-- Content Row -->
-          <div class="row">
-
-      </div>
-      <!-- End of Main Content -->
-
-    </div>
-    <!-- End of Content Wrapper -->
-
-  </div>
-  <!-- End of Page Wrapper -->
-
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
-
-  <!-- Logout Modal-->
+      <?php if (isset($_SESSION['message'])): ?>
+	    <div class="msg">
+		  <?php 
+			echo $_SESSION['message']; 
+			unset($_SESSION['message']);
+		  ?>
+	    </div>
+      <?php endif ?>
+      
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -242,41 +232,7 @@
   <!-- Core plugin JavaScript-->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
 
 </body>
-
 </html>
 
-<?php  
-
-	if(isset($_POST['submit'])){
-		$title = $_POST['title'];
-		$description = $_POST['description'];
-        $category = $_POST['category'];
-		$startDate = $_POST['startDate'];
-        $endDate = $_POST['endDate'];
-        $img = $_FILES['img']['name'];
-		
-	 if(file_exists("upload/".$_FILES["img"]["name"]))
-    {
-      $store = $_FILES["img"]["name"];
-      $_SESSION['status'] = "Image already exists. '.$store.'";
-
-    }else{
-
-      $qry = "INSERT INTO createform VALUES (null, '$title', '$description', '$category', '$startDate', '$endDate', '$img')";
-      	$run = mysqli_query($db, $qry);
-    
-        if($run){
-          move_uploaded_file($_FILES["img"]["tmp_name"],"upload/".$_FILES["img"]["name"]);
-          $_SESSION['success'] = "added";
-        }
-        else{
-          $_SESSION['success'] = "not added";
-        }
-       }
-      }
-      
-    ?>
