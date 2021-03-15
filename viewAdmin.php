@@ -5,7 +5,7 @@
 <html>
 <head>
 
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
 	<title>CRUD: CReate, Update, Delete PHP MySQL</title>
 
   <!-- Custom fonts for this template-->
@@ -230,7 +230,7 @@
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <!-- <script src="vendor/jquery-easing/jquery.easing.min.js"></script> -->
 
 
 </body>

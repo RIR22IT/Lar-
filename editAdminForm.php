@@ -6,16 +6,15 @@
 	if (isset($_GET['edit'])) {
 		$id = $_GET['edit'];
 		$update = true;
-		// $run = mysqli_query($db, "SELECT * FROM form1 WHERE id=$id");
-    $qry = "select * from createform where id = $id";
-		$run = $db -> query($qry);
-		if($run -> num_rows > 0){
-			while($row = $run -> fetch_assoc()){
-          $title = $row['title'];
-          $description = $row['description'];
-          $category = $row['category'];
-          $startDate = $row['startDate'];
-          $endDate = $row['endDate'];       
+		$record = mysqli_query($db, "SELECT * FROM createform WHERE id=$id");
+		if($record -> num_rows > 0){
+			while($n = $record -> fetch_assoc()){
+                $title = $n['title'];
+                $description = $n['description'];
+                $category = $n['category'];
+                $startDate = $n['startDate'];
+                $endDate = $n['endDate'];
+                $img = $n['img'];
 		}  
     } 
 	}
@@ -25,41 +24,20 @@
 <html>
 <head>
 
-  <link rel="stylesheet" type="text/css" href="style.css">
-	<title>CRUD: CReate, Update, Delete PHP MySQL</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-  <!-- Custom fonts for this template-->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-  <!-- Custom styles for this template-->
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
-    <style>
-      
-  form {
+  <style>
+    form {
     width: 45%;
     margin: 50px auto;
     text-align: left;
     padding: 20px; 
     border: 1px solid #bbbbbb; 
     border-radius: 5px;
-  }
-
-  .edit_btn {
-    text-decoration: none;
-    padding: 2px 5px;
-    background: #2E8B57;
-    color: white;
-    border-radius: 3px;
-  }
-
-  .del_btn {
-    text-decoration: none;
-    padding: 2px 5px;
-    color: white;
-    border-radius: 3px;
-    background: #800000;
   }
 
   .msg {
@@ -72,53 +50,65 @@
     width: 50%;
     text-align: center;
   }
-    </style>
+
+  </style>
+
+  <title>ADMIN PANEL</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
+
 <body id="page-top">
 
-      <!-- Page Wrapper -->
+  <!-- Page Wrapper -->
   <div id="wrapper">
 
-<!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-  <!-- Sidebar - Brand -->
-  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="adminPanel.php">
-    <div class="sidebar-brand-icon">
-      <i class="fas fa-users-cog"></i>
-    </div>
-    <div class="sidebar-brand-text mx-3">ADMIN</div>
-  </a>
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="adminPanel.php">
+        <div class="sidebar-brand-icon">
+        <i class="fas fa-users-cog"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">ADMIN</div>
+      </a>
 
-  <!-- Divider -->
-  <hr class="sidebar-divider my-0">
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
 
-  <!-- Nav Item - Dashboard -->
-  <li class="nav-item">
-    <a class="nav-link" href="adminPanel.php">
-      <i class="fas fa-fw fa-tachometer-alt"></i>
-      <span>ADMIN PANEL</span></a>
-  </li>
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item">
+        <a class="nav-link" href="adminPanel.php">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>ADMIN PANEL</span></a>
+      </li>
 
 
-  <!-- Nav Item - Utilities Collapse Menu -->
-  <li class="nav-item">
-    <a class="nav-link" href="adminPanel.php">
-      <i class="fas fa-plus-square"></i>
-      <span>Add</span>
-    </a>
-  </li>
+      <!-- Nav Item - Utilities Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link" href="adminPanel.php">
+          <i class="fas fa-plus-square"></i>
+          <span>Add</span>
+        </a>
+      </li>
 
-  <!-- Nav Item - Utilities Collapse Menu -->
-  <li class="nav-item">
-    <a class="nav-link" href="viewAdmin.php">
-      <i class="fas fa-eye"></i>
-      <span>View</span>
-    </a>
-  </li>
+      <!-- Nav Item - Utilities Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link" href="viewAdmin.php">
+          <i class="fas fa-eye"></i>
+          <span>View</span>
+        </a>
+      </li>
 
-</ul>
+    </ul>
+    <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -164,25 +154,27 @@
           </ul>
 
         </nav>
-        <!-- End of Topbar -->
 
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
-          <!-- Page Heading -->
-          <center><h1 class="h3 mb-1 text-gray-800">Update Advertisement</h1></center><hr><br>
+<body>
 
-          <center><form method = "post">
-            <div class="col-7">
-              <input type="text" class="form-control"  name="title" placeholder="Title" value = "<?php echo $title; ?>">
-            </div><br>
+  <div class="container-fluid">
+          
+  <center><h1 class="h3 mb-1 text-gray-800">Create Advertisement</h1></center><hr>
 
-            <div class="col-7">
-              <input type="text" class="form-control"  name="description" placeholder="Description" value = "<?php echo $description; ?>">
-            </div><br>
-        
-            <div class="col-7">
-            <label for="cat">Category</label>
-              <select class="form-control" id = "cat" name="category">
+	<form method="post" action="viewAdmin.php" >
+
+        <input type="hidden" name="id" value="<?php echo $id; ?>">
+
+        <div class="col-15">
+        <input type="text" name="title" class="form-control" value="<?php echo $title; ?>">
+        </div><br>
+
+        <div class="col-15">
+        <input type="text" name="description" class="form-control" value="<?php echo $description; ?>">
+        </div><br>
+
+        <div class="col-15">
+        <select class="form-control" id = "cat" name="category">
                 <option value="IT-Sware/DB/QA/Web/Graphics/GIS"
                   <?php
                     if($category == 'IT-Sware/DB/QA/Web/Graphics/GIS')
@@ -434,24 +426,30 @@
               </select>
         </div><br>
 
-      <div class="col-15">
-			<label>Start Date</label>
-			<input type="date" name="startDate" class="form-control" value="<?php echo $startDate; ?>">
-		  </div><br>
+        <div class="col-15">
+        <input type="Date" name="startDate" class="form-control" value="<?php echo $startDate; ?>">
+        </div><br>
 
-      <div class="col-15">
-			<label>End Date</label>
-			<input type="date" name="endDate" class="form-control" value="<?php echo $endDate; ?>">
-		  </div><br>
+        <div class="col-15">
+        <input type="Date" name="endDate" class="form-control" value="<?php echo $endDate; ?>">
+        </div><br>
 
-      <?php if ($update == true): ?>
-	    <button type="submit" name="update" class="btn btn-primary">update</button>
-      <?php else: ?>
-	    <button class="btn" type="submit" name="save" >Update</button>
-      <?php endif ?>
+        <?php if ($update == true): ?>
+	      <button class="btn btn-primary" type="submit" name="update" >update</button>
+        <?php else: ?>
+	      <button class="btn" type="submit" name="save" >Update</button>
+        <?php endif ?>
 
-	  </form>
+	</form>
 
+  </div>
+
+<!-- Scroll to Top Button -->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -478,7 +476,7 @@
   <!-- Core plugin JavaScript-->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-
 </body>
+
 </html>
 

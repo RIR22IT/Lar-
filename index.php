@@ -25,8 +25,109 @@ $result = $statement->fetchAll();
   
   <link href="css/bootstrap-select.min.css" rel="stylesheet" />
   <script src="js/bootstrap-select.min.js"></script>
+  <meta charset="UTF-8">
+
+  <style>
+
+.navbar {
+transition: all 0.4s;
+background-color: #2690c5;
+}
+
+.navbar .nav-link {
+color: #fff;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+color: #fff;
+text-decoration: none;
+}
+
+.navbar .navbar-brand {
+color: #fff;
+}
+
+
+/* Change navbar styling on scroll */
+.navbar.active {
+background: #fff;
+box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar.active .nav-link {
+color: #555;
+}
+
+.navbar.active .nav-link:hover,
+.navbar.active .nav-link:focus {
+color: #555;
+text-decoration: none;
+}
+
+.navbar.active .navbar-brand {
+color: #555;
+}
+/* .img{
+height: 100px;
+} */
+/* header styling */
+
+.container{
+height: 150px;
+}
+/* Change navbar styling on small viewports */
+@media (max-width: 991.98px) {
+.navbar {
+    background: #fff;
+}
+
+.navbar .navbar-brand, .navbar .nav-link {
+    color: #555;
+}
+}
+
+.btnContainer .btn {
+  position: absolute;
+  top: 70%;
+  left: 94%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #337ab7;
+  color: black;
+  font-size: 16px;
+  padding: 16px 30px;
+  border-color: black;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.btnContainer .btn:hover {
+  background-color: #9BA1A7;
+  color: white;
+}
+
+</style>
+
  </head>
  <body>
+
+    <!-- <header class="header"> -->
+    <nav class="navbar navbar-expand-lg fixed-top py -0">
+        <div class="container" style="float: left; margin: 0px 20px 15px 0px;">
+        <br><img src="images/LAR-logo.png" alt="Lar logo"
+        style="
+            width: 125px;
+            height: 90px;">
+        </div>
+        <div class="btnContainer">
+        <button class="btn">Back to Main Side</button>
+        </div>
+    </nav>
+
+<!-- </header> -->
+
   <div class="container">
    <br />
    <h2 align="center">JOB PORTAL LAR</h2><br />
@@ -42,6 +143,7 @@ $result = $statement->fetchAll();
    <input type="hidden" name="hidden_category" id="hidden_category" />
    <div style="clear:both"></div>
    <br />
+   <br><br>
    <div class="table-responsive">
     <table class="table table-striped table-bordered">
      <thead>
@@ -51,7 +153,7 @@ $result = $statement->fetchAll();
        <th>CATEGORY</th>
        <th>START DATE</th>
        <th>CLOSE DATE</th>
-       <th>ACTION</th>
+       <th>VIEW</th>
       </tr>
      </thead>
      <tbody>
