@@ -5,12 +5,13 @@ if(isset($_POST['submit'])){
     $email = $_POST['email'];
     $pass = $_POST['password'];
     if($email=='admin@gmail.com' && $pass=='admin'){
-        
-
         header('Location: adminPanel.php?redirect=adminPanel.php');
        
     }else{
-    
+        $_SESSION['message'] = "Invalid Login!";
+        echo '<div class = "msg"> '.$_SESSION['message'].'</div>';
+        unset($_SESSION['message']);
+        
     }
 }
 ?>
@@ -29,7 +30,18 @@ if(isset($_POST['submit'])){
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
+    <style>
+     .msg {
+    margin: 30px auto; 
+    padding: 10px; 
+    border-radius: 5px; 
+    color: #3c763d; 
+    background: #dff0d8; 
+    border: 1px solid #3c763d;
+    width: 50%;
+    text-align: center;
+  }
+    </style>
     
 
 </head>
@@ -40,7 +52,7 @@ if(isset($_POST['submit'])){
 
     <form name="logForm" class="user" action="" method="post">
     <div style="background-image: url('images/about-8.jpg'); background-size: cover; height: 100vh;" >
-    <br><div class="container">
+    <br><br><br><div class="container">
 
     <!-- Outer Row -->
     <div class="row justify-content-center">
@@ -61,7 +73,7 @@ if(isset($_POST['submit'])){
                       <input 
                         type="text" 
                         name="email"
-                        placeholder="email"
+                        placeholder="Email-address"
                         class="form-control form-control-user" 
                         id="exampleInputEmail" 
                         pattern = "[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
