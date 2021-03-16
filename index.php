@@ -31,7 +31,9 @@ $result = $statement->fetchAll();
 
 .navbar {
 transition: all 0.4s;
-background-color: #2690c5;
+background-image: url('images/lloo.jpg');
+background-position: top;
+background-attachment: fixed;
 }
 
 .navbar .nav-link {
@@ -74,7 +76,8 @@ height: 100px;
 /* header styling */
 
 .container{
-height: 150px;
+height: 170px;
+width: 100%;
 }
 /* Change navbar styling on small viewports */
 @media (max-width: 991.98px) {
@@ -89,23 +92,22 @@ height: 150px;
 
 .btnContainer .btn {
   position: absolute;
-  top: 70%;
-  left: 93%;
+  top: 50%;
+  left: 90%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   background-color: #337ab7;
-  color: black;
+  color: #ffffff;
   font-size: 16px;
-  padding: 16px 30px;
-  border-color: black;
+  padding: 10px 30px;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 40px;
   text-align: center;
 }
 
 .btnContainer .btn:hover {
-  background-color: #9BA1A7;
-  color: white;
+  background-color: #ffffff;
+  color: #000000;
 }
 
 </style>
@@ -115,8 +117,8 @@ height: 150px;
 
     <!-- <header class="header"> -->
     <nav class="navbar navbar-expand-lg fixed-top py -0">
-        <div class="container" style="float: left; margin: 0px 20px 15px 0px;">
-        <br><img src="images/LAR-logo.png" alt="Lar logo"
+        <div class="container" style="float: left; margin: 0px 20px 0px 0px;">
+        <br><img src="images/LARlogo2.png" alt="Lar logo"
         style="
             width: 125px;
             height: 90px;">
@@ -134,7 +136,7 @@ height: 150px;
 
    <h2 align="center">JOB PORTAL LAR</h2><br />
    
-   <select name="multi_search_filter" id="multi_search_filter" class="btn btn-primary btn-lg" >
+   <select name="multi_search_filter" id="multi_search_filter" class="btn btn-primary btn-lg" style="width:100%">
    <?php
    foreach($result as $row)
    {
