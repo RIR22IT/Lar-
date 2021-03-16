@@ -22,10 +22,10 @@
         var email =  document.getElementById("email").value;
         var password =  document.getElementById("password").value;
 
-        if(username === "Admin@gmail.com" && password === "admin123" )
+        if(email == "admin@gmail.com" && password == "admin123" )
         {
             alert( "validation succeeded" );
-            location.href="index.html";
+            location.href="adminPanel.php";
         }
         else
         {
@@ -42,8 +42,8 @@
 <body> 
 
 <!-- Admin login Form -->
-
-<form name="logForm" class="user" method="post"> 
+<!-- action="adminPanel.php" -->
+<form name="logForm" class="user" method="post" > 
   <div style="background-image: url('images/about-8.jpg'); background-size: cover; height: 100vh;" >
   <br><div class="container">
 
