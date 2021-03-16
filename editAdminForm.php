@@ -159,7 +159,7 @@
 
   <div class="container-fluid">
           
-  <center><h1 class="h3 mb-1 text-gray-800">Create Advertisement</h1></center><hr>
+  <center><h1 class="h3 mb-1 text-gray-800">Create Advertisement</h1></center>
 
 	<form method="post" action="viewAdmin.php" >
 

@@ -5,7 +5,7 @@
 <html>
 <head>
 
-    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+  <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
 	<title>CRUD: CReate, Update, Delete PHP MySQL</title>
 
   <!-- Custom fonts for this template-->
@@ -25,22 +25,6 @@
     border: 1px solid #bbbbbb; 
     border-radius: 5px;
 }
-
-  .edit_btn {
-    text-decoration: none;
-    padding: 2px 5px;
-    background: #2E8B57;
-    color: white;
-    border-radius: 3px;
-  }
-
-  .del_btn {
-    text-decoration: none;
-    padding: 2px 5px;
-    color: white;
-    border-radius: 3px;
-    background: #800000;
-  }
 
   .msg {
     margin: 30px auto; 
@@ -145,9 +129,11 @@
 
         </nav>
 
-        <center><h1 class="h3 mb-1 text-gray-800">View Advertisements</h1></center><hr><br>
+        <center><h1 class="h3 mb-1 text-gray-800">View Advertisements</h1></center><br>
 
-        <center><table class="table" style = "width: 90%">
+        <center>
+        <div class="table-responsive">
+        <table class="table table-striped table-bordered">
 		    <thead class="table-dark">
 		    <tr>
             <th>#</th>
@@ -172,18 +158,18 @@
 	      ?>
 	
 		    <tr>
-          <td class="table-secondary"><?php echo $i++ ?></td>
-			    <td class="table-secondary"><?php echo $row['title']; ?></td>
-			    <td class="table-secondary"><?php echo $row['description']; ?></td>
-          <td class="table-secondary"><?php echo $row['category']; ?></td>
-		    	<td class="table-secondary"><?php echo $row['startDate']; ?></td>
-          <td class="table-secondary"><?php echo $row['endDate']; ?></td>
-          <td class="table-secondary"><?php echo '<img src="upload/' .$row['img'].'" width = "70px;" height = "70px;" alt = "Image">'?></td>
-			    <td class="table-secondary">
-				  <a href="editAdminForm.php?edit=<?php echo $row['id']; ?>" class="edit_btn" ><i class="fas fa-edit" style="color:white"></i></a>
+          <td><?php echo $i++ ?></td>
+			    <td><?php echo $row['title']; ?></td>
+			    <td><?php echo $row['description']; ?></td>
+          <td><?php echo $row['category']; ?></td>
+		    	<td><?php echo $row['startDate']; ?></td>
+          <td><?php echo $row['endDate']; ?></td>
+          <td><?php echo '<img src="upload/' .$row['img'].'" width = "70px;" height = "60px;" alt = "Image">'?></td>
+			    <td>
+				  <a href="editAdminForm.php?edit=<?php echo $row['id']; ?>" class="edit_btn" ><i class="fas fa-edit" style="color:grey"></i></a>
 			    </td>
-			    <td class="table-secondary">
-				  <a href="php_code.php?del=<?php echo $row['id']; ?>" class="del_btn"><i class="fa fa-trash" style="color:white"></i></a>
+			    <td>
+				  <a href="php_code.php?del=<?php echo $row['id']; ?>" class="del_btn"><i class="fa fa-trash" style="color:grey"></i></a>
 			    </td>
 		      </tr>
 
@@ -195,7 +181,7 @@
 		    }
 	    ?>
 
-      </table></center>
+      </table></div></center>
 
       <?php if (isset($_SESSION['message'])): ?>
 	    <div class="msg">

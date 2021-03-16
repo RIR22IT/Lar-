@@ -90,7 +90,7 @@ height: 150px;
 .btnContainer .btn {
   position: absolute;
   top: 70%;
-  left: 94%;
+  left: 93%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   background-color: #337ab7;
@@ -148,7 +148,7 @@ height: 150px;
    <br><br>
    <div class="table-responsive">
     <table class="table table-striped table-bordered">
-     <thead>
+    <thead class="table-dark">
       <tr>
        <th>TITLE</th>
        <th>DESCRIPTION</th>
