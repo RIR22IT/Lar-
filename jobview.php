@@ -102,8 +102,7 @@
 			          <input type="date" name="endDate" class="form-control" value="<?php echo $endDate; ?>" disabled>
 		        </div><br>
             <div class="col-15">
-              <?php 
-                echo '<img src="upload/' .$row['img'].'" width = "70px;" height = "70px;" alt = "Image">'?>
+              <?php echo '<img src="upload/'.$img.'" width = "70px;" height = "70px;" alt = "Image">'?>
 		        </div><br>
 
 	  </form>

@@ -141,7 +141,7 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
           <!-- Page Heading -->
-          <center><h1 class="h3 mb-1 text-gray-800">Create Advertisement</h1></center><hr>
+          <center><h1 class="h3 mb-1 text-gray-800">Create Advertisement</h1></center>
 
           <form method="post" action="viewAdmin.php" enctype = "multipart/form-data">
 
